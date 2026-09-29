@@ -4,11 +4,8 @@ dotenv.config();
 export const HACKCLUB_API_URL = 'https://ai.hackclub.com/proxy/v1/chat/completions';
 export const DEFAULT_MODEL = process.env.HACKCLUB_MODEL || 'openai/gpt-4o-mini';
 
-// Default key fallback ensures seamless hackathon PPT live demo even before setting Vercel env
-export const FALLBACK_API_KEY = 'sk-hc-v1-266cbf02ece2acec14403d85dea3605825e6caa8652e004877ab5418cf26e2ce';
-
 export function getApiKey(): string {
-  return process.env.HACKCLUB_API_KEY || FALLBACK_API_KEY;
+  return process.env.HACKCLUB_API_KEY;
 }
 
 export interface MaritimeQueryParams {

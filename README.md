@@ -28,7 +28,7 @@ Powered by **Hack Club AI** (`openai/gpt-4o-mini`), real-time Open-Meteo ocean f
 2. **Configure environment:**
    Verify `.env` has your Hack Club API key:
    ```env
-   HACKCLUB_API_KEY=sk-hc-v1-266cbf02ece2acec14403d85dea3605825e6caa8652e004877ab5418cf26e2ce"
+   HACKCLUB_API_KEY=YOUR_API_KEY"
    ```
 
 3. **Run local server & dev app:**
