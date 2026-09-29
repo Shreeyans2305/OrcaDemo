@@ -1,0 +1,6 @@
+{
+  "name": "ORCA - Marine Ecosystem Reasoning with Collaborative Agents",
+  "description": "Voice-first, multilingual, explainable marine decision-support assistant for fishermen, coastal authorities, and researchers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_HACKCLUB_AI_PROXY"]
+}

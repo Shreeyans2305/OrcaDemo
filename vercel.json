@@ -1,0 +1,23 @@
+{
+  "buildCommand": "vite build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/status",
+      "destination": "/api/status"
+    },
+    {
+      "source": "/api/agent/query",
+      "destination": "/api/agent/query"
+    },
+    {
+      "source": "/api/agent/translate",
+      "destination": "/api/agent/translate"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

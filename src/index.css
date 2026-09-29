@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #000000;
+    --color-primary-active: #1c1c1e;
+    --color-primary-disabled: #e5e7eb;
+    --color-ink: #1c1c1e;
+    --color-body: #3a3a3c;
+    --color-muted: #8e8e93;
+    --color-muted-soft: #aeaeb2;
+    --color-hairline: rgba(0, 0, 0, 0.08);
+    --color-hairline-soft: rgba(0, 0, 0, 0.04);
+    --color-canvas: #f2f2f7;
+    --color-surface-soft: #f2f2f7;
+    --color-surface-card: #ffffff;
+    --color-surface-strong: #e5e5ea;
+    --color-surface-dark: #1c1c1e;
+    --color-surface-dark-elevated: #2c2c2e;
+    --color-on-primary: #ffffff;
+    --color-on-dark: #ffffff;
+    --color-on-dark-soft: #aeaeb2;
+    --color-brand-accent: #007aff;
+    --color-success: #34c759;
+    --color-warning: #ff9500;
+    --color-error: #ff3b30;
+  }
+
+  /* Universal Apple-like unified Inter typography for text, numbers, metrics, labels */
+  html, body, button, input, select, textarea, span, p, h1, h2, h3, h4, div {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif !important;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum" !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    color: var(--color-ink);
+    background-color: var(--color-surface-soft);
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Apple-style Display Headings */
+.font-display {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif !important;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+.font-display-xl {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: 2.25rem;
+  line-height: 1.1;
+}
+
+/* Apple-grade Frosted Glass UI Classes */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.glass-tabbar {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(28px) saturate(200%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.glass-pill-container {
+  background: rgba(229, 229, 234, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.glass-pill-active {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0.5px 1.5px rgba(0, 0, 0, 0.04);
+  color: #000000;
+  font-weight: 600;
+}
+
+.glass-dark {
+  background: rgba(28, 28, 30, 0.88);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.35);
+}
+
+.glass-card-soft {
+  background: rgba(242, 242, 247, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-input:focus {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Leaflet container fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.leaflet-control-attribution {
+  font-size: 10px !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(8px) !important;
+  padding: 2px 8px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mobile App Safe-Area & Touch Helpers */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+}
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0.5rem));
+}
+
+/* Phone Bezel Mockup for Hackathon Presentation on Desktop Screens */
+.presentation-phone-frame {
+  position: relative;
+  width: 100%;
+  max-width: 416px;
+  height: 852px;
+  max-height: calc(100vh - 36px);
+  border-radius: 46px;
+  border: 8px solid #202024;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  background: #f2f2f7;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
