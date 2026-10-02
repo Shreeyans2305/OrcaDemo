@@ -34,7 +34,7 @@ export const QuickGuideBar: React.FC<QuickGuideBarProps> = ({ onSelectFeature })
             <span className="font-display font-bold text-xs text-[#1c1c1e]">
               Evaluator & Judge Guide
             </span>
-            <span className="text-[10px] text-[#8e8e93] font-medium hidden xs:inline">
+            <span className="text-[10px] text-[#8e8e93] font-medium hidden sm:inline">
               • 1-Click Feature Tour
             </span>
           </div>

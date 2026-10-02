@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useLayoutEffect } from 'react';
 import {
   Shield,
   Globe,
@@ -33,6 +33,11 @@ interface TopNavProps {
   onOpenOnboarding?: () => void;
 }
 
+interface DropdownPos {
+  top: number;
+  right: number;
+}
+
 export const TopNav: React.FC<TopNavProps> = ({
   vessel,
   onChangeVessel,
@@ -49,6 +54,11 @@ export const TopNav: React.FC<TopNavProps> = ({
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isTelemetryOpen, setIsTelemetryOpen] = useState(false);
   const [isVesselMenuOpen, setIsVesselMenuOpen] = useState(false);
+  const [langDropPos, setLangDropPos] = useState<DropdownPos>({ top: 56, right: 12 });
+  const [vesselDropPos, setVesselDropPos] = useState<DropdownPos>({ top: 56, right: 12 });
+
+  const langBtnRef = useRef<HTMLButtonElement>(null);
+  const vesselBtnRef = useRef<HTMLButtonElement>(null);
 
   const specs = VESSEL_CONFIGS[vessel];
   const currentLangObj = languages.find((l) => l.code === language) || languages[0];
@@ -56,8 +66,32 @@ export const TopNav: React.FC<TopNavProps> = ({
   const sstVal = marineSummary?.currentSst ?? 28.2;
   const waveVal = marineSummary?.currentWaveHeight ?? 1.1;
 
+  const openLangMenu = () => {
+    if (langBtnRef.current) {
+      const rect = langBtnRef.current.getBoundingClientRect();
+      setLangDropPos({
+        top: rect.bottom + 6,
+        right: Math.max(8, window.innerWidth - rect.right),
+      });
+    }
+    setIsLangMenuOpen(true);
+    setIsVesselMenuOpen(false);
+  };
+
+  const openVesselMenu = () => {
+    if (vesselBtnRef.current) {
+      const rect = vesselBtnRef.current.getBoundingClientRect();
+      setVesselDropPos({
+        top: rect.bottom + 6,
+        right: Math.max(8, window.innerWidth - rect.right),
+      });
+    }
+    setIsVesselMenuOpen(true);
+    setIsLangMenuOpen(false);
+  };
+
   return (
-    <header className="h-14 glass-nav px-3 sm:px-4 flex items-center justify-between z-30 sticky top-0 shrink-0 w-full overflow-hidden select-none">
+    <header className="h-14 glass-nav px-3 sm:px-4 flex items-center justify-between z-30 sticky top-0 shrink-0 w-full select-none relative">
       {/* Left: Brand Logo & Guide Button */}
       <div className="flex items-center gap-2 shrink-0">
         <button
@@ -139,14 +173,12 @@ export const TopNav: React.FC<TopNavProps> = ({
       </div>
 
       {/* Right Controls: Language Selector & Vessel Profile */}
-      <div className={`flex items-center gap-1 sm:gap-1.5 shrink-0 ${!isPhoneMode ? 'md:pr-28' : ''}`}>
-        {/* Language Selector Dropdown */}
+      <div className={`flex items-center gap-1 shrink-0 ${!isPhoneMode ? 'md:pr-28' : ''}`}>
+        {/* Language Selector Dropdown — uses fixed positioning to escape overflow:hidden */}
         <div className="relative">
           <button
-            onClick={() => {
-              setIsLangMenuOpen(!isLangMenuOpen);
-              setIsVesselMenuOpen(false);
-            }}
+            ref={langBtnRef}
+            onClick={openLangMenu}
             className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-black/5 hover:bg-black/10 text-xs font-semibold text-[#1c1c1e] transition-all cursor-pointer select-none shrink-0"
             aria-label="Change Language"
           >
@@ -157,15 +189,20 @@ export const TopNav: React.FC<TopNavProps> = ({
 
           {isLangMenuOpen && (
             <>
+              {/* Full-screen fixed backdrop */}
               <div
-                className="fixed inset-0 z-40"
+                className="fixed inset-0 z-[9998]"
                 onClick={() => setIsLangMenuOpen(false)}
               />
-              <div className="absolute right-0 mt-1.5 w-44 glass-surface rounded-2xl p-1.5 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150">
+              {/* Fixed-position dropdown — escapes all overflow:hidden parents */}
+              <div
+                style={{ top: langDropPos.top, right: langDropPos.right }}
+                className="fixed w-44 glass-surface rounded-2xl p-1.5 shadow-2xl z-[9999] animate-in fade-in zoom-in-95 duration-150"
+              >
                 <div className="px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#8e8e93]">
                   {t.changeLanguage}
                 </div>
-                <div className="max-h-60 overflow-y-auto space-y-0.5">
+                <div className="max-h-52 overflow-y-auto space-y-0.5">
                   {languages.map((lang) => {
                     const isSelected = lang.code === language;
                     return (
@@ -200,13 +237,13 @@ export const TopNav: React.FC<TopNavProps> = ({
           )}
         </div>
 
-        {/* Vessel safety class badge & Quick Switch */}
+        {/* Vessel safety class badge & Quick Switch — fixed positioning dropdown */}
         <div className="relative">
           <button
+            ref={vesselBtnRef}
             onClick={() => {
               if (onChangeVessel) {
-                setIsVesselMenuOpen(!isVesselMenuOpen);
-                setIsLangMenuOpen(false);
+                openVesselMenu();
               } else if (onOpenSettings) {
                 onOpenSettings();
               }
@@ -227,10 +264,13 @@ export const TopNav: React.FC<TopNavProps> = ({
           {isVesselMenuOpen && onChangeVessel && (
             <>
               <div
-                className="fixed inset-0 z-40"
+                className="fixed inset-0 z-[9998]"
                 onClick={() => setIsVesselMenuOpen(false)}
               />
-              <div className="absolute right-0 mt-1.5 w-52 glass-surface rounded-2xl p-2 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150 space-y-1">
+              <div
+                style={{ top: vesselDropPos.top, right: vesselDropPos.right }}
+                className="fixed w-52 glass-surface rounded-2xl p-2 shadow-2xl z-[9999] animate-in fade-in zoom-in-95 duration-150 space-y-1"
+              >
                 <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#8e8e93]">
                   Select Vessel Class
                 </div>
@@ -265,14 +305,14 @@ export const TopNav: React.FC<TopNavProps> = ({
         </div>
       </div>
 
-      {/* Interactive Telemetry Dropdown Drawer */}
+      {/* Interactive Telemetry Dropdown Drawer — fixed to viewport */}
       {isTelemetryOpen && (
         <>
           <div
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-[2px]"
             onClick={() => setIsTelemetryOpen(false)}
           />
-          <div className="absolute top-14 left-3 right-3 sm:left-auto sm:right-4 sm:w-80 glass-surface rounded-2xl p-4 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-200 space-y-3 border border-black/10">
+          <div className="fixed top-14 left-3 right-3 sm:left-auto sm:right-4 sm:w-80 glass-surface rounded-2xl p-4 shadow-2xl z-[9999] animate-in fade-in zoom-in-95 duration-200 space-y-3 border border-black/10">
             <div className="flex items-center justify-between border-b border-black/5 pb-2">
               <div className="flex items-center gap-2">
                 <Thermometer className="w-4 h-4 text-orange-500" />

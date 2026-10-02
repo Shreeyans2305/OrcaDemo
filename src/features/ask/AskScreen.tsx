@@ -98,7 +98,7 @@ export const AskScreen: React.FC<AskScreenProps> = ({
   return (
     <div className="flex flex-col flex-1 h-full min-h-0 max-w-3xl mx-auto w-full bg-[#f2f2f7]">
       {/* Conversation Thread */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-0">
         {messages.length === 0 ? (
           <div className="py-6 text-center space-y-3.5">
             <div className="w-13 h-13 rounded-full bg-[#000000] text-white flex items-center justify-center mx-auto shadow-lg ring-4 ring-black/5">
@@ -118,7 +118,7 @@ export const AskScreen: React.FC<AskScreenProps> = ({
             </div>
 
             {/* Structured Suggestion Cards with Category Badges for Beginners */}
-            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-lg mx-auto text-left">
+            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-lg mx-auto text-left w-full">
               {promptPresets.map((preset, idx) => (
                 <button
                   key={idx}
@@ -248,8 +248,8 @@ export const AskScreen: React.FC<AskScreenProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Frosted Input Bar */}
-      <div className="p-3 glass-tabbar sticky bottom-0">
+      {/* Frosted Input Bar — fixed to bottom of flex column */}
+      <div className="p-3 glass-tabbar shrink-0 border-t border-black/[0.06]">
         <form onSubmit={handleSubmit} className="flex items-center gap-2">
           {/* Text Input with AI indicator */}
           <div className="relative flex-1 flex items-center">

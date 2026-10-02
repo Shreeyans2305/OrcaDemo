@@ -415,8 +415,8 @@ export const MapScreen: React.FC<MapScreenProps> = ({
       {/* Full-bleed Leaflet Map */}
       <div ref={mapContainerRef} className="w-full h-full flex-1" />
 
-      {/* Floating Center on Vessel Button (Replaces Old Mic Button) */}
-      <div className="absolute bottom-20 right-3.5 z-20 flex flex-col gap-2">
+      {/* Floating Center on Vessel Button */}
+      <div className="absolute bottom-24 right-3.5 z-20 flex flex-col gap-2">
         <button
           onClick={handleRecenter}
           className="w-11 h-11 rounded-full glass-surface text-[#000000] hover:bg-white active:scale-95 transition-all flex items-center justify-center shadow-lg border border-black/10 cursor-pointer"
@@ -491,7 +491,7 @@ export const MapScreen: React.FC<MapScreenProps> = ({
         className={`
           absolute bottom-0 left-0 right-0 z-20
           glass-surface rounded-t-3xl shadow-2xl
-          transition-all duration-300 max-h-[60vh] flex flex-col
+          transition-all duration-300 max-h-[55vh] flex flex-col
           ${sheetExpanded ? 'translate-y-0' : 'translate-y-[calc(100%-52px)]'}
         `}
       >

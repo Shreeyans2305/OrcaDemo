@@ -70,7 +70,7 @@ export const SafetyScreen: React.FC<SafetyScreenProps> = ({
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem-4rem)] md:min-h-[calc(100vh-4rem-4rem)] bg-[#f2f2f7] pb-16">
+    <div className="w-full bg-[#f2f2f7] pb-6">
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
         {/* Title Header */}
         <div className="flex items-center justify-between">

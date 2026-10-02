@@ -77,7 +77,7 @@ export const FishingZonesScreen: React.FC<FishingZonesScreenProps> = ({
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1 text-xs">
+              <div className="grid grid-cols-2 gap-2.5 pt-1 text-xs sm:grid-cols-4">
                 <div className="bg-black/[0.03] p-3 rounded-2xl border border-black/[0.04]">
                   <div className="text-[11px] text-[#8e8e93] font-medium">Distance</div>
                   <div className="font-bold text-base text-[#1c1c1e] mt-0.5">

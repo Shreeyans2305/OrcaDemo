@@ -31,7 +31,7 @@ export const ResearchScreen: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem-4rem)] md:min-h-[calc(100vh-4rem-4rem)] bg-[#f2f2f7] pb-16">
+    <div className="w-full bg-[#f2f2f7] pb-6">
       <div className="max-w-3xl mx-auto px-4 py-6 space-y-6">
         <div>
           <h1 className="font-display text-2xl font-bold text-[#1c1c1e] tracking-tight">
@@ -49,22 +49,22 @@ export const ResearchScreen: React.FC = () => {
               {t.climatologyDesc}
             </p>
 
-            {/* Monthly Trend Visual Bars */}
-            <div className="grid grid-cols-6 sm:grid-cols-12 gap-2 pt-2">
+            {/* Monthly Trend Visual Bars - scrollable on mobile */}
+            <div className="flex items-end gap-1.5 pt-2 overflow-x-auto no-scrollbar pb-1">
               {monthlyTrends.map((m) => (
                 <div
                   key={m.month}
-                  className="bg-black/[0.03] border border-black/[0.04] rounded-2xl p-2 flex flex-col items-center justify-between text-center min-h-[92px]"
+                  className="bg-black/[0.03] border border-black/[0.04] rounded-xl p-1.5 flex flex-col items-center justify-between text-center min-w-[40px] flex-shrink-0"
                 >
                   <span className="font-bold text-[10px] text-[#1c1c1e]">{m.month}</span>
                   <div className="w-full flex flex-col items-center gap-1 my-1">
                     <div
                       style={{ height: `${(m.chlorophyll / 5.2) * 28 + 6}px` }}
-                      className="w-2.5 bg-[#34c759] rounded-t-sm"
+                      className="w-2 bg-[#34c759] rounded-t-sm"
                       title={`Chlorophyll: ${m.chlorophyll} mg/m³`}
                     />
                   </div>
-                  <span className="text-[10px] text-[#8e8e93] font-semibold">{m.sst}°C</span>
+                  <span className="text-[9px] text-[#8e8e93] font-semibold">{m.sst}°</span>
                 </div>
               ))}
             </div>
@@ -108,7 +108,7 @@ export const ResearchScreen: React.FC = () => {
             <select
               value={selectedTopic}
               onChange={(e) => setSelectedTopic(e.target.value)}
-              className="h-10 px-4 glass-input rounded-full text-xs font-semibold text-[#1c1c1e] focus:outline-none"
+              className="h-10 pl-4 glass-input rounded-full text-xs font-semibold text-[#1c1c1e] focus:outline-none cursor-pointer shrink-0 w-full sm:w-auto"
             >
               <option value="all">{t.allTopics}</option>
               <option value="pfz">{t.topicPfz}</option>
