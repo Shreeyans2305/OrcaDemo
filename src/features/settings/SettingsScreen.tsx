@@ -54,7 +54,7 @@ export const SettingsScreen: React.FC<SettingsScreenProps> = ({
       latency: '85ms',
     },
     {
-      name: 'Hack Club AI Proxy (GPT-4o-mini)',
+      name: 'AI Proxy (GPT-4o-mini)',
       type: 'LLM Orchestrator & Multilingual Reasoning API',
       status: 'Live (Proxy)',
       latency: '240ms',

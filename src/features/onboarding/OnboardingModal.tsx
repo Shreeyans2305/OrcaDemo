@@ -111,7 +111,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                   <span>How to test this prototype:</span>
                 </h3>
                 <p className="text-[11px] text-[#3a3a3c] leading-relaxed">
-                  ORCA combines satellite oceanography (NOAA SST & Open-Meteo), geofencing, and <strong>Hack Club AI (GPT-4o-mini)</strong> to keep small-scale fishermen safe.
+                  ORCA combines satellite oceanography (NOAA SST & Open-Meteo), geofencing, and <strong>AI (GPT-4o-mini)</strong> to keep small-scale fishermen safe.
                 </p>
               </div>
 
@@ -130,10 +130,10 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                 <div className="p-3 rounded-2xl bg-white border border-black/5 shadow-2xs space-y-1">
                   <div className="font-bold text-xs text-[#1c1c1e] flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-                    <span>2. Ask Hack Club AI (Regional Reasoning)</span>
+                    <span>2. Ask AI (Regional Reasoning)</span>
                   </div>
                   <p className="text-[11px] text-[#8e8e93] leading-relaxed">
-                    Go to the <strong>Ask tab</strong> and tap any sample prompt. Hack Club AI calculates live wave heights and explains decisions in English, Tamil, Hindi, or Marathi with numbers.
+                    Go to the <strong>Ask tab</strong> and tap any sample prompt. AI calculates live wave heights and explains decisions in English, Tamil, Hindi, or Marathi with numbers.
                   </p>
                 </div>
 

@@ -89,7 +89,7 @@ export const QuickGuideBar: React.FC<QuickGuideBarProps> = ({ onSelectFeature })
               className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-purple-500/10 hover:bg-purple-500/20 text-purple-800 text-[11px] font-bold border border-purple-500/20 whitespace-nowrap active:scale-95 transition cursor-pointer"
             >
               <Sparkles className="w-3 h-3 text-purple-600" />
-              <span>4. Ask Hack Club AI</span>
+              <span>4. Ask AI</span>
             </button>
 
             <button
